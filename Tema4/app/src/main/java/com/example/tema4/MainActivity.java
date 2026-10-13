@@ -1,16 +1,16 @@
 package com.example.tema4;
 
-
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.tema4.R;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,20 +21,59 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    protected void onStart(){
+    @Override
+    protected void onStart() {
         super.onStart();
-        TextView miTexto = (TextView) findViewById(R.id.texto);
-        miTexto.setText("Nuevo texto a mostrar");
-        //Opcion 1 para cambiar el color.
-        miTexto.setTextColor(Color.parseColor("#0000FF"));
-        // Opcion 2 para cambiar el color.
-        miTexto.setTextColor(Color.RED);
-        // Cambio del Texto a Negrita
-        miTexto.setTypeface(null, Typeface.BOLD);
-        // Cambio el tamaño del texto
-        miTexto.setTextSize(24);
-        // Cambiar tipo de letra
-        miTexto.setTypeface(Typeface.SANS_SERIF);
 
+        TextView miTexto = findViewById(R.id.texto);
+        Button boton1 = findViewById(R.id.miBotonMover);
+        Button boton2 = findViewById(R.id.miBotonParar);
+        Button boton3 = findViewById(R.id.miBotonRotar);
+
+        // Estilos iniciales del texto
+        miTexto.setText("Nuevo texto a mostrar");
+        miTexto.setTextColor(Color.RED);
+        miTexto.setTextSize(24);
+        miTexto.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD);
+
+        // Carga de animaciones
+        Animation miAnimacionMover = AnimationUtils.loadAnimation(this, R.anim.animacion);
+        Animation miAnimacionRotar = AnimationUtils.loadAnimation(this, R.anim.anim_rotate);
+
+        // Acción: Mover
+        boton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                miTexto.setText("Moviendo texto...");
+                miAnimacionMover.setRepeatMode(Animation.RESTART);
+                miAnimacionMover.setRepeatCount(20);
+                miTexto.startAnimation(miAnimacionMover);
+            }
+        });
+
+        // Acción: Parar
+        boton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (miTexto.getAnimation() != null) {
+                    miTexto.clearAnimation();
+                    miTexto.setText("Animación detenida");
+                }
+            }
+        });
+
+        // Acción: Rotar
+        boton3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                miTexto.setText("Ahora gira el texto");
+                miAnimacionRotar.setRepeatMode(Animation.RESTART);
+                miAnimacionRotar.setRepeatCount(20);
+                miTexto.startAnimation(miAnimacionRotar);
+            }
+        });
+
+        // Inicia animación al abrir la pantalla
+        miTexto.startAnimation(miAnimacionMover);
     }
 }

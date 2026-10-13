@@ -8,18 +8,52 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <!-- Texto centrado en la pantalla -->
     <TextView
+        android:id="@+id/texto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id = "@+id/texto"
         android:text="probando el text view"
-        android:textColor ="#CDDC39"
-        android:textStyle ="bold"
+        android:textColor="#CDDC39"
         android:textSize="12sp"
+        android:textStyle="bold"
         android:typeface="monospace"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Botón Parar (ARRIBA): justo debajo del texto y centrado -->
+    <Button
+        android:id="@+id/miBotonParar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Parar"
+        app:layout_constraintTop_toBottomOf="@id/texto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Botón Mover (ABAJO): debajo del botón Parar y centrado -->
+    <Button
+        android:id="@+id/miBotonMover"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Mover"
+        app:layout_constraintTop_toBottomOf="@id/miBotonParar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Botón Rotar (opcional): debajo del botón Mover -->
+    <Button
+        android:id="@+id/miBotonRotar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Rotar"
+        app:layout_constraintTop_toBottomOf="@id/miBotonMover"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
