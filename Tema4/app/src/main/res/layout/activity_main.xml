@@ -1,87 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".MainActivity">
 
-    <AutoCompleteTextView
+    <LinearLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-    <!-- Imagen superior centrada -->
-    <ImageButton
-        android:id="@+id/miImageButton"
-        android:layout_width="1000dp"
-        android:layout_height="3in"
-        android:layout_marginTop="32dp"
-        android:src="@drawable/imagen2"
-        android:contentDescription="Imagen principal"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- Texto debajo de la imagen -->
-    <TextView
-        android:id="@+id/texto"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="probando el text view"
-        android:textColor="#CDDC39"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:typeface="monospace"
-        app:layout_constraintTop_toBottomOf="@id/miImageButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="24dp">
 
-    <!-- Botón Parar: debajo del texto -->
-    <Button
-        android:id="@+id/miBotonParar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Parar"
-        app:layout_constraintTop_toBottomOf="@id/texto"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <!-- Campo de autocompletado (opcional) -->
+        <AutoCompleteTextView
+            android:id="@+id/miAutoComplete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Elige una opcion"
+            android:completionThreshold="4"
+            android:layout_marginBottom="16dp" />
 
-    <!-- Botón Mover: debajo del botón Parar -->
-    <Button
-        android:id="@+id/miBotonMover"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Mover"
-        app:layout_constraintTop_toBottomOf="@id/miBotonParar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <!-- Imagen superior -->
+        <ImageButton
+            android:id="@+id/miImageButton"
+            android:layout_width="350dp"
+            android:layout_height="350dp"
+            android:src="@drawable/imagen2"
+            android:scaleType="centerInside"
+            android:contentDescription="Imagen principal" />
 
-    <!-- Botón Rotar: debajo del botón Mover -->
-    <Button
-        android:id="@+id/miBotonRotar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Rotar"
-        app:layout_constraintTop_toBottomOf="@id/miBotonMover"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <!-- Texto debajo de la imagen -->
+        <TextView
+            android:id="@+id/texto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="probando el text view"
+            android:textColor="#CDDC39"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:typeface="monospace" />
 
-    <!-- ToggleButton: debajo del botón Rotar -->
-    <ToggleButton
-        android:id="@+id/miToggleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:textOff="No pulsado"
-        android:textOn="Pulsado"
-        app:layout_constraintTop_toBottomOf="@id/miBotonRotar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <!-- Botón Parar -->
+        <Button
+            android:id="@+id/miBotonParar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Parar" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- Botón Mover -->
+        <Button
+            android:id="@+id/miBotonMover"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Mover" />
+
+        <!-- Botón Rotar -->
+        <Button
+            android:id="@+id/miBotonRotar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Rotar" />
+
+        <!-- ToggleButton -->
+        <ToggleButton
+            android:id="@+id/miToggleButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textOff="No pulsado"
+            android:textOn="Pulsado" />
+
+        <Spinner
+            android:id="@+id/miSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"/>
+
+
+    </LinearLayout>
+</ScrollView>

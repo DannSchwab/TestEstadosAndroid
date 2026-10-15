@@ -6,7 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -19,6 +23,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+        String [] opciones = {"Opcion1","Opcion2","Opcion3","Opcion4","Opcion5"};
+        AutoCompleteTextView textoLeido = findViewById(R.id.miAutoComplete);
+
+        ArrayAdapter<String> adaptador = new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line,opciones);
+
+        textoLeido.setAdapter(adaptador);
     }
 
     @Override
@@ -75,5 +86,22 @@ public class MainActivity extends AppCompatActivity {
 
         // Inicia animación al abrir la pantalla
         miTexto.startAnimation(miAnimacionMover);
+
+
+        Spinner miSpinner = (Spinner) findViewById(R.id.miSpinner);
+        String[] valores = {"opcion1","opcion2","opcion3","opcion4","opcion5"};
+        miSpinner.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, valores));
+
+        miSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                System.out.println("Has seleccionado el valor:" + parent.getItemAtPosition(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                System.out.println("No has seleccionado nada");
+            }
+        });
     }
 }
