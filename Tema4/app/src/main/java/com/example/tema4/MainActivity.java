@@ -10,10 +10,15 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.RatingBar;
+import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -101,6 +106,49 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 System.out.println("No has seleccionado nada");
+            }
+        });
+
+        Switch miSwitch = (Switch) findViewById(R.id.miSwitch);
+        miSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    miSwitch.setText("Encendido");
+                }else {
+                    miSwitch.setText("Apagado");
+                }
+            }
+        });
+        TextView seekBarText = findViewById(R.id.seekBarText);
+        SeekBar miSeekBar = findViewById(R.id.miSeekbar);
+        miSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+             @Override
+             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                seekBarText.setText("Valor: " + progress);
+             }
+
+             @Override
+             public void onStartTrackingTouch(SeekBar seekBar) {
+             //    seekBarText.setText("Donde lo vas a poner?");
+             }
+
+             @Override
+             public void onStopTrackingTouch(SeekBar seekBar) {
+                 seekBarText.setText("Ahí lo dejas?");
+             }
+         });
+
+        TextView ratingBarText = findViewById(R.id.ratingBarText);
+        RatingBar miRatingBar = findViewById(R.id.miRatingBar);
+        miRatingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                if (rating <= 3) {
+                    ratingBarText.setText("Seguro que solo quieres calificarnos con: " + rating + " estrellas?");
+                }else{
+                    ratingBarText.setText("Gracias calificarnos con: " + rating + " estrellas!");
+                }
             }
         });
     }
